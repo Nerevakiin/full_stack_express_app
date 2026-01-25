@@ -1,11 +1,18 @@
 import express from 'express'
+import { productsRouter } from './routes/products.js'
 
 const app = express()
 const PORT = 8000
 
 app.use(express.static('public'))
 
+app.use('/api/products', productsRouter)
 
+app.use((req, res) => {
+    res.status(400).json({
+        message: "invalid url"
+    })
+})
 
 
 
