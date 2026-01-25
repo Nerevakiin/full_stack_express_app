@@ -16,6 +16,7 @@ async function createTable() {
         title TEXT NOT NULL,
         artist TEXT NOT NULL,
         price REAL NOT NULL,
+        image TEXT NOT NULL,
         year INTEGER,
         genre TEXT,
         stock INTEGER
