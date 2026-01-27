@@ -46,7 +46,7 @@ export async function getProducts(req, res) {
 
         query += ' WHERE title LIKE ? OR artist LIKE ? OR genre LIKE ?' // the actual SQL query that filters
         const searchPattern = `%${search}%` // wildcard for the search function
-        params.push(searchPattern, searchPattern, searchPattern)
+        params.push(searchPattern, searchPattern, searchPattern) // three times because we are checking 3 things
 
     }
 

@@ -25,3 +25,14 @@ alterTable()
 
 
 // i didnt expect this would work but it did holy fucking shit 99999 IQ moment 
+
+
+
+/*
+    const query = 'SELECT * FROM abductions WHERE location = ?'
+    const params = ['Roswell']
+
+    const abductions = await db.all(query, params)
+    console.log(abductions)
+
+*/

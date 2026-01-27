@@ -1,7 +1,7 @@
 import sqlite3 from 'sqlite3'
 import { open } from 'sqlite'
 import path from 'node:path'
-import { vinyl } from './data.js'
+import { vinyl } from '../data.js'
 
 async function seedTable() {
  
