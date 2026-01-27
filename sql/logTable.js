@@ -27,8 +27,8 @@ async function viewAllProducts() {
 }
 
 
-async function logUsersTable() {
-  const db = await 
-}
+// async function logUsersTable() {
+//   const db = await 
+// }
 
 viewAllProducts()
