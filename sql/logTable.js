@@ -35,7 +35,7 @@ async function logUsersTable() {
   try {
     
     const table = await db.all(`SELECT * FROM ${tableName}`)
-    console.log(table)
+    console.table(table)
 
   } catch (err) {
 

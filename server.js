@@ -10,11 +10,11 @@ app.use(express.json())
 app.use(express.static('public'))
 
 app.use('/api/products', productsRouter)
-app.use('/api/register', authRouter)
+app.use('/api/auth', authRouter)
 
 app.use((req, res) => {
     res.status(400).json({
-        message: "invalid url"
+        error: "invalid url"
     })
 })
 
