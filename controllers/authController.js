@@ -28,12 +28,10 @@ export async function registerUser(req, res) {
 
      console.log(req.body)
 
-
+     
      try {
 
-
-      const hashed = await bcrypt.hash(password, 10)
-
+         const hashed = await bcrypt.hash(password, 10)  // hashing the password
 
 
          const db = await getDBConnection()
@@ -49,6 +47,8 @@ export async function registerUser(req, res) {
          const result = await db.run('INSERT INTO users (name, email, username, password) VALUES (?, ?, ?, ?)',
             [name, email, username, hashed]
          )
+
+         req.session.userId = result.lastID // this will bind our logged in user to the session !!!! 
 
          res.status(201).json({ message: 'User registered'})
 
