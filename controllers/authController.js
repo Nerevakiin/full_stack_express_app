@@ -101,3 +101,10 @@ export async function loginUser(req, res) {
    
 }
 
+
+export async function logoutUser(req, res) {
+   req.session.destroy( () => {
+      return res.json({ message: 'Logged out' })
+   })
+}
+

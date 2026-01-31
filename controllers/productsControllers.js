@@ -1,7 +1,5 @@
 import { getDBConnection } from "../db/db.js"
 
-
-
 // gets the top down menu displayed
 export async function getGenres(req, res) {
     
@@ -50,24 +48,13 @@ export async function getProducts(req, res) {
 
     }
 
-
-    
-    
-    
-    
+   
     const products = await db.all(query, params)
-
+    
     res.json(products)
-    
-    
-
-    res.json(genres)
 
     } catch (err) {
         res.status(500).json({error: 'Failed to fetch products', details: err.message})
     }
-
-
-
 
 }
