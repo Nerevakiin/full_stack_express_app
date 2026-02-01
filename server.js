@@ -29,11 +29,8 @@ app.use(session({
 app.use(express.static('public'))
 
 app.use('/api/products', productsRouter)
-
 app.use('/api/auth/me', meRouter)
-
 app.use('/api/auth', authRouter)
-
 app.use('/api/cart', cartRouter)
 
 app.use((req, res) => {
