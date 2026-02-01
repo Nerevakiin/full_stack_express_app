@@ -78,7 +78,7 @@ a {
 
 /* Commented out for recording */
 a:visited {
-    /* color: var(--color-accent); */
+    color: var(--color-accent);
 }
 
 a:hover {

@@ -49,5 +49,27 @@ export async function getCartCount(req, res) {
     const cartCount = await db.get(`SELECT SUM(quantity) AS totalItems FROM cart_items WHERE user_id = ?`, [userId]) 
     
     res.json({ totalItems: cartCount.totalItems || 0 })
+}
+
+
+
+
+export async function getAll(req, res) {
+    try {
+    
+        if (!req.session.userId) {
+            return res.json({error: 'you must login first'})
+        }
+
+        const items = await db.all(` SELECT ci.id AS cartItemId, ci.quantity, p.title, p.artist, p.price
+            FROM cart_items ci JOIN products p ON p.id = ci.product_id WHERE ci.user_id = ?`, [req.session.userId])
+
+        res.json({ items: items })
+
+
+
+    } catch (err) {
+        console.error('get all error: ', err.message)
+    }
 
 }
