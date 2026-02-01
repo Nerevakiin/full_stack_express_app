@@ -39,3 +39,15 @@ export async function addToCart(req, res) {
     }
 
 }
+
+
+
+export async function getCartCount(req, res) {
+    const db = await getDBConnection()
+
+    const userId = req.session.userId // get the user id that is logged in
+    const cartCount = await db.get(`SELECT SUM(quantity) AS totalItems FROM cart_items WHERE user_id = ?`, [userId]) 
+    
+    res.json({ totalItems: cartCount.totalItems || 0 })
+
+}
