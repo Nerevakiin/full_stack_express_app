@@ -55,6 +55,8 @@ export async function getCartCount(req, res) {
 
 
 export async function getAll(req, res) {
+    const db = await getDBConnection()
+    
     try {
     
         if (!req.session.userId) {
@@ -72,4 +74,46 @@ export async function getAll(req, res) {
         console.error('get all error: ', err.message)
     }
 
+}
+
+
+
+export async function deleteItem(req, res) {
+    const db = await getDBConnection()
+
+    try {
+
+        const itemId = parseInt(req.params.itemId, 10) // getting the item id and checking if its a number
+
+        if (isNaN(itemId)) {
+            return res.status(400).json({error: 'Invalid item ID'})
+        }
+
+        // getting the item itself by checking the quantity
+        const item = await db.get('SELECT quantity FROM cart_items WHERE id = ? AND user_id = ?', [itemId, req.session.userId])
+
+        if (!item) {
+            return res.status(400).json({error: 'item not found'})
+        }
+
+        // actually deleting the item from the db
+        await db.run(`DELETE FROM cart_items WHERE id = ? AND user_id = ?`, [itemId, req.session.userId])
+
+        res.status(204).send() // the proper response to send when there is no json that is to be returned
+
+
+
+    } catch (err) {
+        console.error('delete item error: ', err.message)
+    }
+}
+
+
+
+export async function deleteAll(req, res) {
+
+    const db = await getDBConnection()
+    await db.run('DELETE FROM cart_items WHERE user_id = ?', [req.session.userId])
+    res.status(204).send()
+    
 }
