@@ -17,7 +17,7 @@ signinForm.addEventListener('submit', async (e) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      credentials: 'include', // Ensure session cookie is sent
+      credentials: 'include', 
       body: JSON.stringify({ username, password })
     })
 

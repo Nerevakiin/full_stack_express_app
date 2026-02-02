@@ -59,9 +59,6 @@ export async function getAll(req, res) {
     
     try {
     
-        if (!req.session.userId) {
-            return res.json({error: 'you must login first'})
-        }
 
         const items = await db.all(` SELECT ci.id AS cartItemId, ci.quantity, p.title, p.artist, p.price
             FROM cart_items ci JOIN products p ON p.id = ci.product_id WHERE ci.user_id = ?`, [req.session.userId])
@@ -115,5 +112,5 @@ export async function deleteAll(req, res) {
     const db = await getDBConnection()
     await db.run('DELETE FROM cart_items WHERE user_id = ?', [req.session.userId])
     res.status(204).send()
-    
+
 }
